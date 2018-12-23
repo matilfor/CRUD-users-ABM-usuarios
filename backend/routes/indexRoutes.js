@@ -10,4 +10,8 @@ router.get("/users", function(req, res){
     res.sendFile(path.join(__dirname, "..", "", "users.html"));
 });
 
+router.get("/users/edit", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "", "edit.html"));
+  });
+
 module.exports = router;

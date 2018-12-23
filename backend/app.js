@@ -8,6 +8,8 @@ const apiRoutes = require('./routes/apiRoutes');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+path.join();
+
 app.use("/api", apiRoutes);
 app.use("/", indexRoutes);
 
@@ -16,3 +18,5 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.listen(3000, function () {
   console.log('server listening...')
 });
+
+module.exports = app;

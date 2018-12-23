@@ -1,36 +1,53 @@
 const $tableUsers = $("#table-users");
-const users = [
-  {
-    id: 1,
-    nombre: "Ada",
-    apellido: "Lovelace",
-    telefono: "1234567890",
-    email: "contacto@gmail.com"
-  },
-  {
-    id: 2,
-    nombre: "Grace",
-    apellido: "Hopper",
-    telefono: "087654321",
-    email: "contacto@hotmail.com"
-  }
-];
+$.ajax("/api/users").done(function(data){
+  buildTableUsers(data);
+});
 
-function buildTableUsers() {
+function buildTableUsers(users) {
     for (let i = 0; i < users.length; i++) {
       $tableUsers.append(`
-          <tr data-id=${users[i].id}>
+          <tr class= "fila-user" data-id=${users[i].id}>
               <td>${users[i].nombre}</td>
               <td>${users[i].apellido}</td>
               <td>${users[i].telefono}</td>
               <td>${users[i].email}</td>
-              <td><button class="btn" id="put"><a href="put.html?id=${
-                users[i].id
-              }">Editar</a></button></td>
-              <td><button class="btn" id="borrar">Borrar</button></td>
+              <td><button class="btn edit">Editar</button></td>
+              <td><button class="btn delete">Borrar</button></td>
           </tr>
       `);
     }
-  }
-  
-  buildTableUsers();
+  };
+
+  $(document).on("click", ".btn.delete", function() {
+    const that = $(this);
+    const id = that
+      .parent()
+      .parent()
+      .data("id");
+    $.ajax(`/api/users/${id}`, { 
+      method: "delete" 
+    })
+    .done(function(){
+      that.parent().parent().remove();
+    })
+    .fail(function(){
+      alert('algo explotó');
+    });
+  });
+
+  $(document).on("click", ".btn.edit", function(){
+    const id = $(this)
+    .parent()
+    .parent()
+    .data("id");
+    location.href = `/users/edit?id=${id}`;
+  });
+
+  $('#filter-form button').click(function(){
+    const search = $('#filter-form input').val();
+    $.ajax('/api/users?search=' + search)
+      .done(function(data){
+        $('table tr.fila-user').remove();
+        buildTableUsers(data);
+      })
+  });
