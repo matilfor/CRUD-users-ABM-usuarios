@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Usuarios</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>Add a new user</title>
 </head>
 <body>
+  <div class="container">
+    <h2>Add a new user</h2>
     <form>
-        <fieldset>
-            Nombre:<br>
-            <input type="text" name="name" value="" maxlength="30">
-            <br> Apellido:<br>
-            <input type="text" name="lastname" value="" maxlength="30">
-            <br> Telefono: <br>
-            <input type="number" name="phone" value="">
-            <br> Email:<br>
-            <input type="email" name="email" value="">
-            <br><br>
-            <button type="button">Guardar</button>
-        </fieldset>
+      <fieldset>
+          Name:<br>
+          <input type="text" name="name" value="" maxlength="30">
+          <br> Last name:<br>
+          <input type="text" name="lastname" value="" maxlength="30">
+          <br> Phone: <br>
+          <input type="number" name="phone" value="">
+          <br> Email:<br>
+          <input type="email" name="email" value="">
+          <br><br>
+          <button type="button" class="btn btn-default">Save</button>
+      </fieldset>
     </form>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="/javascripts/new.js"></script>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="/javascripts/new.js"></script>
 </body>
 </html>

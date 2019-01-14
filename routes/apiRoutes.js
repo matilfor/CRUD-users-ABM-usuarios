@@ -3,43 +3,50 @@ const router = express.Router();
 const users = [
     {
       id: 1,
-      nombre: "Ada",
-      apellido: "Lovelace",
-      telefono: "1234567890",
-      email: "contacto@gmail.com"
+      name: "Ada",
+      lastName: "Lovelace",
+      phone: "1234567890",
+      email: "contact@gmail.com"
     },
     {
       id: 2,
-      nombre: "Grace",
-      apellido: "Hopper",
-      telefono: "087654321",
-      email: "contacto@hotmail.com"
+      name: "Grace",
+      lastName: "Hopper",
+      phone: "087654321",
+      email: "contact@hotmail.com"
     },
     {
         id: 3,
-        nombre: "Juana",
-        apellido: "Molina",
-        telefono: "585858585",
-        email: "contacto@gmail.com"
+        name: "Juana",
+        lastName: "Molina",
+        phone: "585858585",
+        email: "contact@gmail.com"
       },
   ];
 
-let contador = 4;
+let counter = 4;
 
 router.get("/users", function(req, res){
     const search = req.query.search;
     if (search && search.length > 0){
-        let usersFiltrados = [];
+        //search = search.toLowerCase();
+        let filteredUsers = [];
         for(let i = 0; i<users.length; i++){
-            //falta for
+            const name = users[i].name.toLowerCase();
+            const lastName = users[i].lastName.toLowerCase();
+            const phone = users[i].phone.toLowerCase();
+            const email = users[i].email.toLowerCase();
+            if (name.indexOf(search)>=0 || lastName.indexOf(search)>=0 || phone.indexOf(search)>=0 || email.indexOf(search)>=0){
+                filteredUsers.push(users[i]);
+            }
         }
-        return res.json(usersFiltrados);
+        return res.json(filteredUsers);
     }
-    res.json(users);
+    return res.json(users);
 });
 
 router.delete("/users/:id", function(req, res){
-    const userId = parseInt(req.params.id); //convierto el id que es string a un numero entero
+    const userId = parseInt(req.params.id);
     users.splice(users.findIndex(user => user.id == userId), 1)
     res.json(users);
 });
@@ -52,10 +59,10 @@ router.get("/users/:id", function(req, res){
 
 router.post("/users", function(req, res){
     const newUser = req.body;
-    if (newUser.nombre.length > 30) {
-        return res.status(400).end('la pifiaste');
+    if (newUser.name.length > 30) {
+        return res.status(400).end('Error');
     };
-    newUser.id = contador++;
+    newUser.id = counter++;
     users.push(newUser);
     res.json(newUser);
 });
@@ -63,10 +70,10 @@ router.post("/users", function(req, res){
 router.put("/users/:id", function(req, res){
     const idUser = parseInt(req.params.id)
     const editedUser = users.find(u => u.id === idUser)
-    editedUser.nombre = req.body.nombre || editedUser.nombre;
-    editedUser.apellido = req.body.apellido || editedUser.apellido;
+    editedUser.name = req.body.name || editedUser.name;
+    editedUser.lastName = req.body.lastName || editedUser.lastName;
     editedUser.email = req.body.email || editedUser.email;
-    editedUser.telefono = req.body.telefono || editedUser.telefono;
+    editedUser.phone = req.body.phone || editedUser.phone;
     res.json(editedUser)
 })
 module.exports = router;

@@ -7,7 +7,7 @@ router.get("/users/new", function(req, res){
 });
 
 router.get("/users", function(req, res){
-    res.sendFile(path.join(__dirname, "..", "", "users.html"));
+    res.sendFile(path.join(__dirname, "..", "", "index.html"));
 });
 
 router.get("/users/edit", (req, res) => {

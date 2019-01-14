@@ -1,39 +1,39 @@
 $('form button').click(function () {
-    const nombre = $('input[name="name"]').val();
-    const apellido = $('input[name="lastname"]').val();
-    const telefono = $('input[name="phone"]').val();
+    const name = $('input[name="name"]').val();
+    const lastName = $('input[name="lastname"]').val();
+    const phone = $('input[name="phone"]').val();
     const email = $('input[name="email"]').val();
   
-    const validarNumero = /^\d+$/;
-    const validarEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const phoneValidation = /^\d+$/;
+    const emailValidation = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   
-    if (validarNumero.test(telefono) === false) {
-      alert('el fono tienen que ser solo numeros');
+    if (phoneValidation.test(phone) === false) {
+      alert('Phone format must be numbers only');
       return;
     }
   
-    if (validarEmail.test(email) === false) {
-      alert('mandaste fruta con el email');
+    if (emailValidation.test(email) === false) {
+      alert('Wrong email format');
       return;
     }
   
-    let elNuevoUsuario = {
-      nombre: nombre,
-      apellido: apellido,
+    let newUser = {
+      name: name,
+      lastName: lastName,
       email: email,
-      telefono: telefono
+      phone: phone
     };
   
     $.ajax('http://localhost:3000/api/users', {
       method: 'POST',
-      data: elNuevoUsuario
+      data: newUser
     })
     .done(function () {
-      alert('usuario creado!');
+      alert('User created');
       location.href = '/users';
     })
     .fail(function (err) {
-      alert('salio mal');
-      console.log('salio todo mal: ', err);
+      alert('ERROR');
+      console.log('Error: ', err);
     })
   });
