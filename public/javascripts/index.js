@@ -1,20 +1,23 @@
 const $tableUsers = $("#table-users");
+
 $.ajax("/api/users").done(function(data){
   buildTableUsers(data);
 });
 
 function buildTableUsers(users) {
     for (let i = 0; i < users.length; i++) {
-      $tableUsers.append(`
-          <tr class= "fila-user" data-id=${users[i].id}>
-              <td>${users[i].nombre}</td>
-              <td>${users[i].apellido}</td>
-              <td>${users[i].telefono}</td>
+      $tableUsers.append(`<tbody>
+          <tr scope="row" class="user-row" data-id=${users[i].id}>
+              <td>${users[i].name}</td>
+              <td>${users[i].lastName}</td>
+              <td>${users[i].phone}</td>
               <td>${users[i].email}</td>
-              <td><button class="btn edit">Editar</button></td>
-              <td><button class="btn delete">Borrar</button></td>
+              <td><button class="btn edit"><i class="material-icons">
+              edit</i></button></td>
+              <td><button class="btn delete"><i class="material-icons">
+              delete</i></button></td>
           </tr>
-      `);
+        </tbody>`);
     }
   };
 
@@ -31,7 +34,7 @@ function buildTableUsers(users) {
       that.parent().parent().remove();
     })
     .fail(function(){
-      alert('algo explotó');
+      alert('Something went wrong');
     });
   });
 
@@ -47,7 +50,7 @@ function buildTableUsers(users) {
     const search = $('#filter-form input').val();
     $.ajax('/api/users?search=' + search)
       .done(function(data){
-        $('table tr.fila-user').remove();
+        $('.user-row').remove();
         buildTableUsers(data);
       })
   });

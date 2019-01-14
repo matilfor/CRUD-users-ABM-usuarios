@@ -1,23 +1,23 @@
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 
-const $nombre = $('input[name="nombre"]');
-const $apellido = $('input[name="apellido"]');
-const $telefono = $('input[name="telefono"]');
+const $name = $('input[name="name"]');
+const $lastName = $('input[name="lastName"]');
+const $phone = $('input[name="phone"]');
 const $email = $('input[name="email"]');
 
 $.ajax(`/api/users/${id}`).done(function(user){
-    $nombre.val(user.nombre);
-    $apellido.val(user.apellido);
-    $telefono.val(user.telefono);
+    $name.val(user.name);
+    $lastName.val(user.lastName);
+    $phone.val(user.phone);
     $email.val(user.email);
 });
 
 $('#btn-edit').click(function(){
     const editedUser = {
-        nombre : $nombre.val(),
-        apellido : $apellido.val(),
-        telefono : $telefono.val(),
+        name : $name.val(),
+        lastName : $lastName.val(),
+        phone : $phone.val(),
         email : $email.val()
     }
     $.ajax(`http://localhost:3000/api/users/${id}`, {
@@ -25,10 +25,10 @@ $('#btn-edit').click(function(){
       data: editedUser,
     })
     .done(function(){
-        alert('usuario editado');
+        alert('User edited');
         location.href= '/users';
     })
     .fail(function(){
-        alert('algo explotó');
+        alert('Something went wrong');
       });
 })
