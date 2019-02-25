@@ -22,8 +22,8 @@ function buildTableUsers(users) {
   };
 
   $(document).on("click", ".btn.delete", function() {
-    const that = $(this);
-    const id = that
+      const that = $(this);
+      const id = that
       .parent()
       .parent()
       .data("id");
