@@ -1,9 +1,10 @@
+/* Save the html table node in a const variable so it can be accessed easily in the code with JQuery */
 const $tableUsers = $("#table-users");
-
+/* Create a table that shows the users' info and send it to the server with ajax */
 $.ajax("/api/users").done(function(data){
   buildTableUsers(data);
 });
-
+/* This function creates the table */
 function buildTableUsers(users) {
     for (let i = 0; i < users.length; i++) {
       $tableUsers.append(`<tbody>
@@ -20,7 +21,7 @@ function buildTableUsers(users) {
         </tbody>`);
     }
   };
-
+/* This function deletes an user by clicking on the delete button */
   $(document).on("click", ".btn.delete", function() {
       const that = $(this);
       const id = that
@@ -31,13 +32,13 @@ function buildTableUsers(users) {
       method: "delete" 
     })
     .done(function(){
-      that.parent().parent().remove();
+      that.parent().parent().remove(); /* If everything it's ok, it deletes the deleted user's row from the table */
     })
     .fail(function(){
-      alert('Something went wrong');
+      alert('Something went wrong'); /* If something is wrong, it shows an error message */
     });
   });
-
+/* This function edits an user by clicking on the edit button */
   $(document).on("click", ".btn.edit", function(){
     const id = $(this)
     .parent()
@@ -45,12 +46,13 @@ function buildTableUsers(users) {
     .data("id");
     location.href = `/users/edit?id=${id}`;
   });
-
+/* This function searchs for an user by clicking on the filter button */
   $('#filter-form button').click(function(){
     const search = $('#filter-form input').val();
     $.ajax('/api/users?search=' + search)
       .done(function(data){
-        $('.user-row').remove();
+        $('.user-row').remove(); /* This method removes all rows that doesn't match the search query */
+        /* Shows the new table with only the searched user or users */
         buildTableUsers(data);
       })
   });
