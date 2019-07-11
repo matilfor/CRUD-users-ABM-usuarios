@@ -1,3 +1,8 @@
+
+function goBack() {
+  window.history.back();
+}
+
 /* This function adds a new user by clicking on the button with the 'form button' class */
 $('form button').click(function () {
   /* Save the data typed in the inputs in a const variable */

@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <title>Add a new user</title>
 </head>
-<body>
+<body style="margin: 5em">
   <div class="container">
     <h2>Add a new user</h2>
     <form>
@@ -20,11 +20,12 @@
           <br> Last name:<br>
           <input type="text" name="lastname" value="" maxlength="30">
           <br> Phone: <br>
-          <input type="number" name="phone" value="">
+          <input type="tel" name="phone" value="">
           <br> Email:<br>
           <input type="email" name="email" value="">
           <br><br>
-          <button type="button" class="btn btn-default">Save</button>
+          <button type="button" class="btn btn-info">Save</button>
+          <button type="button" class="btn btn-info" onclick="goBack()">Back</button>
       </fieldset>
     </form>
   </div>

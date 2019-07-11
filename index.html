@@ -7,24 +7,35 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>Users</title>
 </head>
-<body>
+<body style="margin: 5em">
   <div class="container">
     <h2>Users list</h2>
-    <table class="table" id=table-users></table>
+    <table class="table table-hover table-info" id=table-users>
+      <thead class="table-light">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Telephone</th>
+          <th scope="col">Email</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+    </table>
     <div class="text-center">
-      <a href="/users/new" class="btn btn-default"><i class="material-icons">person_add</i> Add a new user</a>
+      <a href="/users/new" class="btn btn-info"><i class="material-icons">person_add</i> Add a new user</a>
     </div>
     <form id="filter-form">
       <h4>Search filter</h4>
       <input type="text" name= "filter">
-      <button type="button" class="btn btn-default">Filter</button>
+      <button type="button" class="btn btn-info">Filter</button>
     </form>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="/javascripts/index.js"></script>
 </body>
 </html>

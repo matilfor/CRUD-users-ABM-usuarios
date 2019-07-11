@@ -1,3 +1,7 @@
+function goBack() {
+    window.history.back();
+}
+
 /* Retrieve the id param from the url. The id is a unique number that identifies each user 
 stored in the users array */
 const urlParams = new URLSearchParams(window.location.search);

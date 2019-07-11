@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>Edit User</title>
   </head>
-  <body>
+  <body style="margin: 5em">
     <div class="container">
       <h2>Edit user</h2>
       <form>
@@ -18,7 +18,8 @@
         <input type="text" maxlength="30" placeholder="Last Name" name="lastName">
         <input type="text" placeholder="Email" name="email">
         <input type="text" placeholder="Phone" name="phone">
-        <button type="button" class="btn btn-default" id="btn-edit">Save changes</button>
+        <button type="button" class="btn btn-info" id="btn-edit">Save changes</button>
+        <button type="button" class="btn btn-info" onclick="goBack()">Back</button>
       </form>
     </div>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
